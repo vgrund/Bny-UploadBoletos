@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="OperacoesAggregate\Commands\" />
+    <Folder Include="OperacoesAggregate\Extensions\" />
+    <Folder Include="OperacoesAggregate\Handlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bny.UploadBoletos.SharedKernel\Bny.UploadBoletos.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>
