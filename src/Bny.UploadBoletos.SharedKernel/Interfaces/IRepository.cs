@@ -2,6 +2,7 @@
 {
     public interface IRepository<T>: IAggregateRoot where T : class
     {
-        Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
+        Task AddAsync(T entity, CancellationToken cancellationToken = default);
+        Task<ICollection<T>> GetAllAsync(CancellationToken cancellationToken = default);
     }
 }

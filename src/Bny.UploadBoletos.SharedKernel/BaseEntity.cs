@@ -5,6 +5,7 @@ namespace Bny.UploadBoletos.SharedKernel
     public abstract class BaseEntity
     {
         public Guid Id { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public ValidationResult ValidationResult { get; set; }
 
         protected BaseEntity()

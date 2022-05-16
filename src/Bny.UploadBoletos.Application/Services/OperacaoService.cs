@@ -11,10 +11,12 @@ namespace Bny.UploadBoletos.Application.Services
     public class OperacaoService : IOperacaoService
     {
         private readonly ILoteService _loteService;
+        private readonly IOperacaoRepository _operacaoRepository;
 
-        public OperacaoService(ILoteService loteService)
+        public OperacaoService(ILoteService loteService, IOperacaoRepository operacaoRepository)
         {
             _loteService = loteService;
+            _operacaoRepository = operacaoRepository;
         }
 
         public async Task ProcessarArquivoAsync(IFormFile arquivo)
@@ -64,14 +66,13 @@ namespace Bny.UploadBoletos.Application.Services
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                //return ex.ToString();
             }
         }
 
         private async Task GravarAsync()
         {
-
-
+            await _operacaoRepository.AddAsync(new Operacao());
         }
     }
 }

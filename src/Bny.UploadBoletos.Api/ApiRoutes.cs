@@ -1,7 +1,8 @@
 ﻿using Bny.UploadBoletos.Application.Exceptions;
 using Bny.UploadBoletos.Application.Interfaces;
+using Bny.UploadBoletos.Domain.OperacoesAggregate;
+using Bny.UploadBoletos.Domain.OperacoesAggregate.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Text;
 
 namespace Bny.UploadBoletos.Api
 {
@@ -21,7 +22,7 @@ namespace Bny.UploadBoletos.Api
 
                     try
                     {
-                        var operacoes = await _operacoesService.ProcessarArquivoAsync(arquivo);
+                        await _operacoesService.ProcessarArquivoAsync(arquivo);
                     }
                     catch (OperacaoInvalidaException e)
                     {
@@ -34,14 +35,29 @@ namespace Bny.UploadBoletos.Api
                         return Results.Problem("Um ou mais arquivos não foram importados.");
                     }
 
-                    return Results.Created(operacoes);
+                    return Results.Created("", null);
                 }
             )
                 .Produces<Operacao>(StatusCodes.Status201Created)
                 .Produces<CustomProblemDetails>(StatusCodes.Status422UnprocessableEntity)
                 .Produces(StatusCodes.Status400BadRequest)
-                .WithName("UploadOperacoes")
-                .WithTags("Upload","Operações Renda Variavel");
+                .WithName("PostUploadOperacoes")
+                .WithTags("Operações Renda Variavel");
+
+            app.MapGet("/v1/upload",
+                async (IOperacaoRepository operacaoRepository) =>
+                {
+                    var operacoes = await operacaoRepository.GetAllAsync();
+                    
+                    if (!operacoes.Any()) return Results.NotFound();
+
+                    return Results.Ok(await operacaoRepository.GetAllAsync());
+                }
+            )
+                .Produces<List<Operacao>>(StatusCodes.Status200OK)
+                .Produces(StatusCodes.Status404NotFound)
+                .WithName("GetOperacoes")
+                .WithTags("Operações Renda Variavel");
         }
     }
 }

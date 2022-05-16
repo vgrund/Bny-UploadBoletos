@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 #region Services Configuration
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerConfiguration();
+builder.Services.AddInfrastructure(builder.Configuration);
 #endregion
 
 var app = builder.Build();
