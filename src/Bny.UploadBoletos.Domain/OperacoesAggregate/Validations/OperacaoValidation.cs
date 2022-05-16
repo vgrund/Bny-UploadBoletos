@@ -62,7 +62,7 @@ namespace Bny.UploadBoletos.Domain.OperacoesAggregate.Validations
         protected void ValidateCorretora()
         {
             RuleFor(c => c.Corretora)
-                .NotEmpty().WithMessage("Corretora está vazia")
+                .NotEmpty().WithMessage("Corretora está vazio")
                 .Must(corretoraValidas)
                     .WithMessage(x => $"Corretora inválida {x.Corretora}");
 

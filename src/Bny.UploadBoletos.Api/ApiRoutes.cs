@@ -23,23 +23,21 @@ namespace Bny.UploadBoletos.Api
                     try
                     {
                         await _operacoesService.ProcessarArquivoAsync(arquivo);
+                        return Results.Created("", null);
                     }
-                    catch (OperacaoInvalidaException e)
+                    catch (FormatoArquivoInvalidoException e)
                     {
-                        return Results.Problem(
-                            new CustomProblemDetails(e.OperacaoInvalida.ValidationResult, 
-                            StatusCodes.Status422UnprocessableEntity));
+                        return Results.Problem(e.Message, statusCode: StatusCodes.Status422UnprocessableEntity);
                     }
-                    catch (Exception)
+                    catch (ErroInesperadoException e)
                     {
-                        return Results.Problem("Um ou mais arquivos não foram importados.");
+                        return Results.Problem(e.Message, statusCode: StatusCodes.Status500InternalServerError);
                     }
-
-                    return Results.Created("", null);
                 }
             )
-                .Produces<Operacao>(StatusCodes.Status201Created)
-                .Produces<CustomProblemDetails>(StatusCodes.Status422UnprocessableEntity)
+                .Produces(StatusCodes.Status201Created)
+                .Produces<ProblemDetails>(StatusCodes.Status422UnprocessableEntity)
+                .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
                 .Produces(StatusCodes.Status400BadRequest)
                 .WithName("PostUploadOperacoes")
                 .WithTags("Operações Renda Variavel");

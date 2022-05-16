@@ -4,6 +4,8 @@
 
 - Entity Framework
 - FluenteValidation
+- xUnit
+- FluentAssertions
 - Swashbuckle
 
 ## Arquitetura e Patterns
@@ -29,6 +31,11 @@
 - https://lostechies.com/jimmybogard/2008/08/12/enumeration-classes/
 - https://medium.com/swlh/2-defensive-coding-techniques-you-should-use-today-4225cacc1c29
 - https://hub.docker.com/_/microsoft-mssql-server
+- https://opentelemetry.io/docs/instrumentation/net/exporters/
+
+## Oportunidades de melhorias
+
+- Aumentar a cobertura de testes
 
 ## Como executar
 
@@ -42,3 +49,5 @@ docker run --rm -ti --name=ctop --volume /var/run/docker.sock:/var/run/docker.so
 
 add-migration Initial
 update-database
+
+docker run -p 9090:9090 -v ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus

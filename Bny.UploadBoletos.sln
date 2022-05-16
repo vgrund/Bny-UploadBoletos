@@ -11,19 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserInterface", "UserInterface", "{B1F4EF7E-F28D-4FBF-B198-CA7F25234F64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bny.UploadBoletos.Domain", "src\Bny.UploadBoletos.Domain\Bny.UploadBoletos.Domain.csproj", "{F3D14A1C-5E63-4D39-BEA7-CD8C8E896F13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bny.UploadBoletos.Domain", "src\Bny.UploadBoletos.Domain\Bny.UploadBoletos.Domain.csproj", "{F3D14A1C-5E63-4D39-BEA7-CD8C8E896F13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bny.UploadBoletos.SharedKernel", "src\Bny.UploadBoletos.SharedKernel\Bny.UploadBoletos.SharedKernel.csproj", "{47A50178-AA20-4AD4-837B-4E07D34DF84C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bny.UploadBoletos.SharedKernel", "src\Bny.UploadBoletos.SharedKernel\Bny.UploadBoletos.SharedKernel.csproj", "{47A50178-AA20-4AD4-837B-4E07D34DF84C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bny.UploadBoletos.Api", "src\Bny.UploadBoletos.Api\Bny.UploadBoletos.Api.csproj", "{CFF38649-E9BF-41C4-B2F3-4345889EB52F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bny.UploadBoletos.Api", "src\Bny.UploadBoletos.Api\Bny.UploadBoletos.Api.csproj", "{CFF38649-E9BF-41C4-B2F3-4345889EB52F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bny.UploadBoletos.Infra.IoC", "src\Bny.UploadBoletos.Infrastructure\Bny.UploadBoletos.Infra.IoC.csproj", "{E17C92E2-D4F7-45EF-AA24-4A8A934044B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bny.UploadBoletos.Infra.IoC", "src\Bny.UploadBoletos.Infrastructure\Bny.UploadBoletos.Infra.IoC.csproj", "{E17C92E2-D4F7-45EF-AA24-4A8A934044B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C41B5EC8-FDAF-401D-AC14-568249BCFB4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bny.UploadBoletos.Application", "src\Bny.UploadBoletos.Application\Bny.UploadBoletos.Application.csproj", "{6EB13A4D-8E41-4DCB-8428-45AF593E77CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bny.UploadBoletos.Application", "src\Bny.UploadBoletos.Application\Bny.UploadBoletos.Application.csproj", "{6EB13A4D-8E41-4DCB-8428-45AF593E77CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bny.UploadBoletos.Infra.Data", "src\Bny.UploadBoletos.Infra.Data\Bny.UploadBoletos.Infra.Data.csproj", "{B53F2EAF-5C02-4FD8-908A-B7533191D17E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bny.UploadBoletos.Infra.Data", "src\Bny.UploadBoletos.Infra.Data\Bny.UploadBoletos.Infra.Data.csproj", "{B53F2EAF-5C02-4FD8-908A-B7533191D17E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bny.UploadBoletos.UnitTests", "tests\Bny.UploadBoletos.UnitTests\Bny.UploadBoletos.UnitTests.csproj", "{92937FC6-7D1D-4A9E-8E7A-6A3C1EC9FADF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{B53F2EAF-5C02-4FD8-908A-B7533191D17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B53F2EAF-5C02-4FD8-908A-B7533191D17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B53F2EAF-5C02-4FD8-908A-B7533191D17E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92937FC6-7D1D-4A9E-8E7A-6A3C1EC9FADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92937FC6-7D1D-4A9E-8E7A-6A3C1EC9FADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92937FC6-7D1D-4A9E-8E7A-6A3C1EC9FADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92937FC6-7D1D-4A9E-8E7A-6A3C1EC9FADF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{E17C92E2-D4F7-45EF-AA24-4A8A934044B9} = {78BC021B-940A-4913-B529-397E61772E11}
 		{6EB13A4D-8E41-4DCB-8428-45AF593E77CF} = {C41B5EC8-FDAF-401D-AC14-568249BCFB4B}
 		{B53F2EAF-5C02-4FD8-908A-B7533191D17E} = {78BC021B-940A-4913-B529-397E61772E11}
+		{92937FC6-7D1D-4A9E-8E7A-6A3C1EC9FADF} = {9EC7B6CA-F8CB-4628-83FD-DC2F24285C55}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EAB76AA-E5BC-4831-A57B-F8C76D342D39}
