@@ -24,7 +24,7 @@ namespace Bny.UploadBoletos.Application.Services
             try
             {
                 var linhaCount = 0;
-                
+
                 using (var reader = new StreamReader(arquivo.OpenReadStream()))
                 {
                     while (reader.Peek() >= 0)
@@ -33,9 +33,8 @@ namespace Bny.UploadBoletos.Application.Services
                         if (linha is null || string.Equals(linha, String.Empty)) 
                             throw new FormatoArquivoInvalidoException($"Formato do arquivo inválido na linha {linhaCount}");
 
-                        if (string.Equals(linha, "0#RV") || 
-                            string.Equals(linha, "99#RV"))
-                            break;
+                        if (linha.EhInicioArquivo()) continue;
+                        if (linha.EhFimArquivo()) break;
                         
                         var dados = linha.Split("#", StringSplitOptions.None);
 
@@ -49,7 +48,7 @@ namespace Bny.UploadBoletos.Application.Services
                     }
                 }
 
-                await GravarAsync();
+                 await GravarAsync();
             }
             catch (FormatoArquivoInvalidoException e)
             {
@@ -80,6 +79,16 @@ namespace Bny.UploadBoletos.Application.Services
 
         private async Task GravarAsync()
         {
+            //foreach (var operacaoPair in _loteService.MaiorOperacaoCliente)
+            //{
+            //    await _operacaoRepository.AddAsync(operacaoPair.Value);
+            //}
+
+            //foreach (var operacaoPair in _loteService.DemaisOperacoes)
+            //{
+            //    await _operacaoRepository.AddAsync(operacaoPair.Value);
+            //}
+
             await _operacaoRepository.AddRangeAsync(_loteService.MaiorOperacaoCliente.Values.ToList());
             await _operacaoRepository.AddRangeAsync(_loteService.DemaisOperacoes.Values.ToList());
         }

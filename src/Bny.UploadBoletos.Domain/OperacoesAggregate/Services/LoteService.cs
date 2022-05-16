@@ -7,15 +7,14 @@ namespace Bny.UploadBoletos.Domain.OperacoesAggregate.Services
     {
         /*
          * A estimativa do tamanho do lote é importante para que não ocorram muitos
-         * resizes da capacidade dos dicionários.
-         * Já que sei que temos apenas 3 clientes diferentes, resolvi polpar a contagem de 
-         * clientes diferentes no Enum por conta do custo da operação (OperacaoCodigosClientes.GetAll().Count)
+         * resizes da capacidade dos dicionários o que mudaria a complexidade do Add de O(1) para O(n)
+         * Assumi que a quantidade de clientes diferentes deve ser bem menor que operações, considerando 1/5 das operações.
          */
         public LoteService(int tamanho)
         {
             // Programação defensiva
             _ = tamanho == 0 ? throw new ArgumentException("Tamanho não deve ser zero", nameof(tamanho)) : true;
-            MaiorOperacaoCliente = new Dictionary<string, Operacao>(3);
+            MaiorOperacaoCliente = new Dictionary<string, Operacao>(tamanho/5);
             DemaisOperacoes = new Dictionary<Guid, Operacao>(tamanho);
         }
 

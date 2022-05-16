@@ -15,6 +15,12 @@ namespace Bny.UploadBoletos.Infra.Data.Repository
             DbSet = Db.Set<Operacao>();
         }
 
+        public async Task AddAsync(Operacao operacao, CancellationToken cancellationToken = default)
+        {
+            await DbSet.AddAsync(operacao, cancellationToken);
+            await Db.SaveChangesAsync();
+        }
+
         public async Task AddRangeAsync(ICollection<Operacao> operacoes, CancellationToken cancellationToken = default)
         {
             await DbSet.AddRangeAsync(operacoes, cancellationToken);
@@ -24,6 +30,12 @@ namespace Bny.UploadBoletos.Infra.Data.Repository
         public async Task<ICollection<Operacao>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await DbSet.ToListAsync(cancellationToken);
+        }
+
+        public void DeleteAll()
+        {
+            DbSet.RemoveRange(DbSet);
+            Db.SaveChanges();
         }
 
         public void Dispose()

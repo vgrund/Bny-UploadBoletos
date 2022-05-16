@@ -11,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerConfiguration();
 builder.Services.AddInfrastructure(builder.Configuration);
-var serviceName = "Bny.UploadBoletos.Api";
-var serviceVersion = "1.0.0";
+//var serviceName = "Bny.UploadBoletos.Api";
+//var serviceVersion = "1.0.0";
 //builder.Services.AddOpenTelemetryTracing(b =>
 //{
 //    b
@@ -43,16 +43,15 @@ var serviceVersion = "1.0.0";
 //});
 
 builder.Services.AddOpenTelemetryTracing(
-                (builder) => builder
-                    .SetResourceBuilder(
-                          ResourceBuilder.CreateDefault().AddService("example-app"))
-                    .AddAspNetCoreInstrumentation()
-                    .AddConsoleExporter()
-                    .AddOtlpExporter(opt =>
-                    {
-                        opt.Endpoint = new Uri("grafana-agent:55680");
-                    }))
-    ;
+    (builder) => builder
+        .SetResourceBuilder(
+                ResourceBuilder.CreateDefault().AddService("example-app"))
+        .AddAspNetCoreInstrumentation()
+        .AddConsoleExporter()
+        .AddOtlpExporter(opt =>
+        {
+            opt.Endpoint = new Uri("grafana-agent:55680");
+        }));
 #endregion
 
 var app = builder.Build();

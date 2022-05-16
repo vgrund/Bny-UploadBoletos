@@ -11,18 +11,23 @@ namespace Bny.UploadBoletos.Api
         public static void ConfigureUploadRoutes(this WebApplication app)
         {
             app.MapPost("/v1/upload",
-                [Consumes("multipart/form-data")]
-                async ([FromForm] IFormFile arquivo,
-                    IOperacaoService _operacoesService) =>
+                //[Consumes("multipart/form-data")]
+                async ([FromForm] HttpRequest request,
+                    IOperacaoService _operacoesService
+                    ) =>
                 {
-                    if (arquivo.Length > 0)
-                    {
+                    if (!request.HasFormContentType)
+                        return Results.BadRequest("Content-Type inválido");
+
+                    var formCollection = await request.ReadFormAsync();
+                    var formFile = formCollection.Files["arquivos"];
+
+                    if (formFile is null || formFile.Length == 0)
                         return Results.BadRequest("Arquivo vazio ou inexistente");
-                    }   
 
                     try
                     {
-                        await _operacoesService.ProcessarArquivoAsync(arquivo);
+                        await _operacoesService.ProcessarArquivoAsync(formFile);
                         return Results.Created("", null);
                     }
                     catch (FormatoArquivoInvalidoException e)
@@ -40,7 +45,9 @@ namespace Bny.UploadBoletos.Api
                 .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
                 .Produces(StatusCodes.Status400BadRequest)
                 .WithName("PostUploadOperacoes")
-                .WithTags("Operações Renda Variavel");
+                .WithTags("Operações Renda Variavel")
+                .Accepts<IFormFile>(contentType: "multipart/form-data")
+                ;
 
             app.MapGet("/v1/upload",
                 async (IOperacaoRepository operacaoRepository) =>
@@ -55,6 +62,18 @@ namespace Bny.UploadBoletos.Api
                 .Produces<List<Operacao>>(StatusCodes.Status200OK)
                 .Produces(StatusCodes.Status404NotFound)
                 .WithName("GetOperacoes")
+                .WithTags("Operações Renda Variavel");
+
+            app.MapDelete("/v1/upload",
+                (IOperacaoRepository operacaoRepository) =>
+                {
+                    operacaoRepository.DeleteAll();
+
+                    return Results.NoContent();
+                }
+            )
+                .Produces(StatusCodes.Status204NoContent)
+                .WithName("DeleteOperacoes")
                 .WithTags("Operações Renda Variavel");
         }
     }
