@@ -11,7 +11,6 @@ namespace Bny.UploadBoletos.Api
         public static void ConfigureUploadRoutes(this WebApplication app)
         {
             app.MapPost("/v1/upload",
-                //[Consumes("multipart/form-data")]
                 async ([FromForm] HttpRequest request,
                     IOperacaoService _operacoesService
                     ) =>
@@ -27,7 +26,7 @@ namespace Bny.UploadBoletos.Api
 
                     try
                     {
-                        await _operacoesService.ProcessarArquivoAsync(formFile);
+                         _operacoesService.ProcessarArquivo(formFile);
                         return Results.Created("", null);
                     }
                     catch (FormatoArquivoInvalidoException e)
@@ -46,8 +45,7 @@ namespace Bny.UploadBoletos.Api
                 .Produces(StatusCodes.Status400BadRequest)
                 .WithName("PostUploadOperacoes")
                 .WithTags("Operações Renda Variavel")
-                .Accepts<IFormFile>(contentType: "multipart/form-data")
-                ;
+                .Accepts<IFormFile>(contentType: "multipart/form-data");
 
             app.MapGet("/v1/upload",
                 async (IOperacaoRepository operacaoRepository) =>

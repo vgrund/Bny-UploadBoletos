@@ -36,7 +36,7 @@
 						{
 							"key": "arquivos",
 							"type": "file",
-							"src": "/C:/Users/Vinicius/Downloads/caseUploadBoletosRV-ArquivoBoletoExemplo.txt"
+							"src": "/C:/workspace/BNY/Bny.UploadBoletosApi/resources/caseUploadBoletosRV-ArquivoBoletoExemplo.txt"
 						}
 					]
 				},
@@ -56,7 +56,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Purge",
 			"request": {
 				"method": "DELETE",
 				"header": [],

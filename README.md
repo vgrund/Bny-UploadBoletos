@@ -30,12 +30,15 @@
 - https://medium.com/swlh/2-defensive-coding-techniques-you-should-use-today-4225cacc1c29
 - https://hub.docker.com/_/microsoft-mssql-server
 - https://opentelemetry.io/docs/instrumentation/net/exporters/
+- https://eximia.co/fazendo-parsing-de-arquivos-grandes/
 
 ## Oportunidades de melhorias
 
 - Aumentar a cobertura de testes
 - Monitoramento e Log
 - Autorização
+- Reduzir alocações para diminuir a pressão no GC
+  - Substituir lógica do Split por Span
 
 ## Como executar
 

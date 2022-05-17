@@ -42,5 +42,11 @@ namespace Bny.UploadBoletos.Infra.Data.Repository
         {
             Db.Dispose();
         }
+
+        public void AddRange(ICollection<Operacao> operacoes)
+        {
+             DbSet.AddRange(operacoes);
+             Db.SaveChanges();
+        }
     }
 }
